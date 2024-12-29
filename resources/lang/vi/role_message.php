@@ -1,0 +1,25 @@
+<?php
+return [
+    'group' => 'Nhóm vai trò',
+    'slug' => 'Cụm',
+    'description' => 'Mô tả vai trò',
+    'search' => 'Tìm kiếm...',
+    'add' => 'Thêm vai trò',
+    'add_success' => 'Thêm vai trò thành công',
+    'add_error' => 'Thêm vai trò thất bại',
+    'delete' => 'Xoá vai trò',
+    'delete_confirm' => 'Bạn có muốn xoá vai trò <span class="text-danger">:name</span> này không?',
+    'delete_success' => 'Xoá vai trò thành công',
+    'delete_error' => 'Xoá vai trò thất bại',
+    'edit' => 'Cập nhật vai trò',
+    'edit_success' => 'Cập nhật vai trò thành công',
+    'edit_error' => 'Cập nhật vai trò thất bại',
+    'note' => 'Hành động này không thể hoàn tác',
+    'update' => 'Sửa vai trò',
+    'save' => 'Lưu lại',
+    'not_found' => 'Không tìm thấy vai trò nào',
+    'required' => 'Các trường <span class="text-danger">*</span> là bắt buộc',
+    'required_name' => 'Bạn chưa nhập vào ô nhóm vai trò',
+    'required_slug' => 'Bạn chưa nhập vào ô cụm',
+    'unique_slug' => 'Cụm phải là duy nhất'
+];
