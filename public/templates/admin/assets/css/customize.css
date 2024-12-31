@@ -159,6 +159,18 @@ textarea{
     height: 150px;
     text-align: center;
 }
+.image img{
+    height: 150px;
+    max-height: 150px !important;
+    object-fit: cover;
+    text-align: center;
+}
+.image_post img{
+    width: 300px !important;
+    height: 200px !important;
+    object-fit: cover;
+    border-radius: 5px;
+}
 .image-target{
     cursor: pointer;
 }
@@ -186,6 +198,13 @@ input[name=canonical]{
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 20px;
+}
+.box_description{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .skill-col{
     display: flex;

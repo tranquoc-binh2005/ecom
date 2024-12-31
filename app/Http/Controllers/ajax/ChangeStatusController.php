@@ -33,4 +33,16 @@ class ChangeStatusController extends Controller
         }
         return response()->json(['status' => 'error', 'message' => 'loi'], 400);
     }
+
+    public function changeOrder(Request $request)
+    {
+        $newStatus = $request->value;
+        $result = DB::table($request->field)
+            ->where('id', $request->id)
+            ->update(['order' => $newStatus]);
+        if($result) {
+            return response()->json(['status' => 'success', 'message' => 'thanh cong'], 200);
+        }
+        return response()->json(['status' => 'error', 'message' => 'loi'], 400);
+    }
 }

@@ -53,11 +53,11 @@ return [
         'subModule' => [
             [
                 'name' => 'Post Catalogue Management',
-                'route' => 'role.index',
+                'route' => 'post.catalogue.index',
             ],
             [
                 'name' => 'Post Management',
-                'route' => 'role.index',
+                'route' => 'post.index',
             ]
         ]
     ]

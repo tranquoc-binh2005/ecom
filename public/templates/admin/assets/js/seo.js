@@ -5,11 +5,11 @@ seoPreview = () => {
         $('.meta_title').html(value)
     })
 
-    $('input[name=canonical]').css({
+    $('input[name=slug]').css({
         'padding-left': parseInt($('.baseUrl').outerWidth()) - 4
     })
 
-    $('input[name=canonical]').on('keyup', function() {
+    $('input[name=slug]').on('keyup', function() {
         let input = $(this)
         let value = input.val()
         $('.canonical').html(BASE_URL + value + SUFFIX)

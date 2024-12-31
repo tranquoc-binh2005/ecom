@@ -53,11 +53,11 @@ return [
       'subModule' => [
           [
               'name' => 'Danh mục',
-              'route' => 'role.index',
+              'route' => 'post.catalogue.index',
           ],
           [
               'name' => 'Bài đăng',
-              'route' => 'role.index',
+              'route' => 'post.index',
           ]
       ]
   ]

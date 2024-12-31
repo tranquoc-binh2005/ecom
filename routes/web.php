@@ -5,6 +5,8 @@ use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\AuthController as BackendAuthController;
+use App\Http\Controllers\backend\PostCatalogueController;
+use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\ajax\ChangeStatusController;
 
 /*
@@ -23,6 +25,7 @@ Route::get('/', function () {
 });
 Route::post('/change-status', [ChangeStatusController::class, 'changeStatus']);
 Route::post('/change-statusAll', [ChangeStatusController::class, 'changeStatusAll']);
+Route::post('/change-order', [ChangeStatusController::class, 'changeOrder']);
 
 Route::group(['middleware' => ['role:admin,ctv,writer', 'language']], function () {
     Route::get('lang/{lang}', function ($lang) {
@@ -52,6 +55,26 @@ Route::group(['middleware' => ['role:admin,ctv,writer', 'language']], function (
         Route::post('/update/{id}', [RoleController::class, 'update'])->name('role.update');
         Route::get('/delete/{id}', [RoleController::class, 'delete'])->name('role.delete');
         Route::post('/destroy/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
+    });
+
+    Route::prefix('/post/catalogue')->group(function () {
+        Route::get('/', [PostCatalogueController::class, 'index'])->name('post.catalogue.index');
+        Route::get('/create', [PostCatalogueController::class, 'create'])->name('post.catalogue.create');
+        Route::post('/store', [PostCatalogueController::class, 'store'])->name('post.catalogue.store');
+        Route::get('/edit/{id}', [PostCatalogueController::class, 'edit'])->name('post.catalogue.edit');
+        Route::post('/update/{id}', [PostCatalogueController::class, 'update'])->name('post.catalogue.update');
+        Route::get('/delete/{id}', [PostCatalogueController::class, 'delete'])->name('post.catalogue.delete');
+        Route::post('/destroy/{id}', [PostCatalogueController::class, 'destroy'])->name('post.catalogue.destroy');
+    });
+
+    Route::prefix('/post')->group(function () {
+        Route::get('/', [PostController::class, 'index'])->name('post.index');
+        Route::get('/create', [PostController::class, 'create'])->name('post.create');
+        Route::post('/store', [PostController::class, 'store'])->name('post.store');
+        Route::get('/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+        Route::post('/update/{id}', [PostController::class, 'update'])->name('post.update');
+        Route::get('/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
+        Route::post('/destroy/{id}', [PostController::class, 'destroy'])->name('post.destroy');
     });
 });
 

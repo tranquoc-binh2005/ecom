@@ -24,3 +24,8 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <!-- ckeditor5 css -->
 <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.css" />
+
+<script>
+    let BASE_URL = "{{config('app.url')}}";
+    let SUFFIX = ".html"
+</script>

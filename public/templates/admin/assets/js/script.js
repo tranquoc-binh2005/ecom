@@ -106,10 +106,35 @@ changeBackground = (object) => {
     }
 }
 
+changeOrder = () => {
+    $('input[name=order]').on('change', function () {
+        let id = $(this).attr('data-id')
+        let field = $(this).attr('data-field')
+        let value = $(this).val()
+
+        $.ajax({
+            url: '/change-order',
+            type: 'POST',
+            data: {'id': id, 'value': value, 'field': field},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (e) {
+                console.log(e)
+            }
+        });
+    })
+}
+
+
 $(document).ready(function (){
     $('.setupSelect2').select2()
     changeStatus()
     inputCheck()
     inputCheckAll()
     changeStatusAll()
+    changeOrder()
 })

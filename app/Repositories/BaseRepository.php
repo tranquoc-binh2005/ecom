@@ -33,6 +33,12 @@ class BaseRepository implements BaseRepositoryInterface
             });
         }
 
+        if (!empty($condition['parent_id'])) {
+            $query->where(function ($query) use ($condition) {
+                $query->where('parent_id', $condition['parent_id']);
+            });
+        }
+
         if(!empty($condition['publish']) && $condition['publish'] != -1){
             $query->where('publish', $condition['publish']);
         }

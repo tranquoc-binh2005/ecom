@@ -21,6 +21,7 @@
 <script src="templates\admin\assets\js\app.min.js"></script>
 <script src="templates\admin\assets\js\script.js"></script>
 <script src="templates\admin\assets\js\finder.js"></script>
+<script src="templates\admin\assets\js\seo.js"></script>
 <!-- Switchery js -->
 <script src="templates\admin\assets\libs\switchery\switchery.min.js"></script>
 <!-- select2 js -->
