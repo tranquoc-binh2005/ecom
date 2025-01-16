@@ -18,7 +18,7 @@
                         <li>
                             <a
                                 class="publishAll"
-                                data-field="users"
+                                data-field="post_catalogue"
                                 data-column="publish"
                                 data-value="2"
                                 href="#"
@@ -27,7 +27,7 @@
                         <li>
                             <a
                                 class="publishAll"
-                                data-field="users"
+                                data-field="post_catalogue"
                                 data-column="publish"
                                 data-value="1"
                                 href="#"

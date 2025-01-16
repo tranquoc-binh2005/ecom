@@ -29,7 +29,7 @@ return [
           ],
           [
               'name' => 'Phân quyền',
-              'route' => 'role.index',
+              'route' => 'permission.index',
           ]
       ]
   ],
@@ -39,11 +39,15 @@ return [
       'subModule' => [
           [
               'name' => 'Danh mục',
-              'route' => 'role.index',
+              'route' => 'product.catalogue.index',
+          ],
+          [
+              'name' => 'Thuộc tính sản phẩm',
+              'route' => 'attribute.index',
           ],
           [
               'name' => 'Sản phẩm',
-              'route' => 'role.index',
+              'route' => 'product.index',
           ]
       ]
   ],

@@ -3,6 +3,7 @@
 
 <!-- Vendor js -->
 <script src="templates\admin\assets\js\vendor.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 
 <!-- Third Party js-->
 <script src="templates\admin\assets\libs\peity\jquery.peity.min.js"></script>
@@ -22,6 +23,7 @@
 <script src="templates\admin\assets\js\script.js"></script>
 <script src="templates\admin\assets\js\finder.js"></script>
 <script src="templates\admin\assets\js\seo.js"></script>
+<script src="templates\admin\assets\js\variant.js"></script>
 <!-- Switchery js -->
 <script src="templates\admin\assets\libs\switchery\switchery.min.js"></script>
 <!-- select2 js -->

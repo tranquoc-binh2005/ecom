@@ -29,7 +29,8 @@ class BaseRepository implements BaseRepositoryInterface
         if (!empty($condition['keyword'])) {
             $query->where(function ($query) use ($condition) {
                 $query->where('name', 'like', '%' . $condition['keyword'] . '%')
-                    ->orWhere('description', 'like', '%' . $condition['keyword'] . '%');
+                    ->orWhere('description', 'like', '%' . $condition['keyword'] . '%')
+                    ->orWhere('slug', 'like', '%' . $condition['keyword'] . '%');
             });
         }
 

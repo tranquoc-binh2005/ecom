@@ -9,12 +9,17 @@
         <!-- User box -->
         <div class="user-box">
             <div class="user-img">
-                <img src="templates\admin\assets\images\users\user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
+                <img width="50px" height="50px" src="{{ auth()->user()->image ??
+                'templates\admin\assets\images\users\user-1
+                .jpg'}}"
+                      alt="user-img"
+                     title="Mat Helme"
+                     class="rounded-circle img-fluid">
                 <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
             </div>
 
             <h5><a href="javascript: void(0);">Marcia J. Melia</a> </h5>
-            <p class="text-muted mb-0"><small>Product Owner</small></p>
+            <p class="text-muted mb-0"><small>{{ auth()->user()->name }}</small></p>
         </div>
 
         <!-- Settings -->

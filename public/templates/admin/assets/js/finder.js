@@ -60,6 +60,7 @@ setupCkFinder = () => {
 function selectFileWithCKFinder(elementId) {
     CKFinder.popup({
         chooseFiles: true,
+        chooseMultiple: true,
         width: 800,
         height: 600,
         onInit: function (finder) {

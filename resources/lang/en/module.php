@@ -29,7 +29,7 @@ return [
             ],
             [
                 'name' => 'Permission Management',
-                'route' => 'role.index',
+                'route' => 'permission.index',
             ]
         ]
     ],
@@ -39,11 +39,15 @@ return [
         'subModule' => [
             [
                 'name' => 'Category Management',
-                'route' => 'role.index',
+                'route' => 'product.catalogue.index',
+            ],
+            [
+                'name' => 'Attribute Product Management',
+                'route' => 'attribute.index',
             ],
             [
                 'name' => 'Product Management',
-                'route' => 'role.index',
+                'route' => 'product.index',
             ]
         ]
     ],

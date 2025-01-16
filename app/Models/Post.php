@@ -30,9 +30,18 @@ class Post extends Model
 
     ];
 
+    const STATUS_DRAFT = 'draft';
+    const STATUS_UNPUBLISHED = 'unpublished';
+    const STATUS_PUBLISHED = 'published';
+
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 
     public function post_catalogues()

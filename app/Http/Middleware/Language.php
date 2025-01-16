@@ -15,7 +15,7 @@ class Language
      */
     public function handle(Request $request, Closure $next)
     {
-        $lang = session('lang', 'vn'); // Mặc định là tiếng Việt
+        $lang = session('lang', 'vi'); // Mặc định là tiếng Việt
         app()->setLocale($lang);
 
         return $next($request);

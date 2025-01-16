@@ -6,13 +6,12 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\Interface\BaseRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
-
 use App\Repositories\BaseRepository;
 use App\Repositories\UserRepository;
-
 use App\Services\Interface\UserServiceInterface;
-
 use App\Services\UserService;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
