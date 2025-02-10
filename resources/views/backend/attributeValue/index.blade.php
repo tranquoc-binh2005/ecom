@@ -10,7 +10,9 @@
 
         <form action="{{ route('attribute.value.index') }}" method="GET">
             <div class="filter-box">
-                <a class="btn btn-info" href="{{ route('attribute.value.create') }}">{{ __('productCatalogue_message.add') }}</a>
+                <a class="btn btn-info" href="{{ route('attribute.value.create') }}">{{ __('Thêm nhóm thuộc tính sản
+                phẩm')
+                }}</a>
             </div>
         </form>
 

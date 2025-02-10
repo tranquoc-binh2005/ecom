@@ -46,6 +46,10 @@ return [
                 'route' => 'attribute.index',
             ],
             [
+                'name' => 'Attribute Value Product Management',
+                'route' => 'attribute.value.index',
+            ],
+            [
                 'name' => 'Product Management',
                 'route' => 'product.index',
             ]

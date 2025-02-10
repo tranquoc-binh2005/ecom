@@ -31,10 +31,10 @@ class AttributeController extends Controller
 
     public function index(Request $request)
     {
-        $title = __('dashboard.postCatalogue');
+        $title = __('Quản lý thuộc tính sản phẩm');
         $breadcrumb = [
-            'route' => 'post.catalogue.index',
-            'title' => __('dashboard.postCatalogue'),
+            'route' => 'attribute.index',
+            'title' => __('Quản lý thuộc tính sản phẩm'),
         ];
 
         $attributes = $this->attributeService->paginate($request);
@@ -44,10 +44,10 @@ class AttributeController extends Controller
 
     public function create(Request $request)
     {
-        $title = __('postCatalogue_message.add');
+        $title = __('Thêm nhóm thuộc tính');
         $breadcrumb = [
-            'route' => 'post.catalogue.create',
-            'title' => __('postCatalogue_message.add'),
+            'route' => 'atrribute.create',
+            'title' => __('Thêm nhóm thuộc tính'),
         ];
         $attributes = $this->attributeService->paginate($request);
         return view('backend.attribute.store', compact('title','breadcrumb', 'attributes'));
@@ -65,7 +65,7 @@ class AttributeController extends Controller
     {
         $title = __('postCatalogue_message.edit');
         $breadcrumb = [
-            'route' => 'post.catalogue.create',
+            'route' => 'atrribute.create',
             'title' => __('postCatalogue_message.edit'),
         ];
         $attribute = $this->attributeService->find($id);
@@ -83,13 +83,13 @@ class AttributeController extends Controller
 
     public function delete($id)
     {
-        $title = __('postCatalogue_message.delete');
+        $title = __('Xoá nhóm thuộc tính');
         $breadcrumb = [
-            'route' => 'post.catalogue.delete',
-            'title' => __('postCatalogue_message.delete'),
+            'route' => 'atrribute.delete',
+            'title' => __('Xoá nhóm thuộc tính'),
         ];
-        $postCatalogue = $this->attributeService->find($id);
-        return view('backend.attribute.destroy', compact('title','breadcrumb', 'postCatalogue'));
+        $attribute = $this->attributeService->find($id);
+        return view('backend.attribute.destroy', compact('title','breadcrumb', 'attribute'));
     }
 
     public function destroy($id)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Services\AttributeService;
 use App\Services\AttributeValueService;
@@ -34,10 +35,10 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $title = __('dashboard.product');
+        $title = __('Danh sách sản phẩm');
         $breadcrumb = [
             'route' => 'product.index',
-            'title' => __('dashboard.post'),
+            'title' => __('Trang sản phẩm'),
         ];
 
         $products = $this->productService->paginate($request);
@@ -49,10 +50,10 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $title = __('product_message.add');
+        $title = __('Thêm sản phẩm');
         $breadcrumb = [
             'route' => 'product.create',
-            'title' => __('product_message.add'),
+            'title' => __('Thêm sản phẩm'),
         ];
         $request['perpage'] = 100;
         $categories = $this->productCatalogueService->paginate($request);
@@ -62,10 +63,10 @@ class ProductController extends Controller
         return view('backend.product.store', compact('title','breadcrumb', 'viewModel', 'attributes'));
     }
 
-    public function store(StorePostRequest $request)
+    public function store(StoreProductRequest $request)
     {
         if($this->productService->create($request->all())){
-            return redirect()->route('product..index')->with('success', __('product_message.add_success'));
+            return redirect()->route('product.index')->with('success', __('product_message.add_success'));
         }
         return back()->with('error', __('product_message.add_error'))->withInput();
     }
@@ -78,6 +79,7 @@ class ProductController extends Controller
             'title' => __('product_message.edit'),
         ];
         $product = $this->productService->find($id);
+        dd($product);
         $categories = $this->productCatalogueService->paginate($request);
         $viewModel = new ProductCatalogueViewModel($categories);
         return view('backend.product.store', compact('title','breadcrumb','product', 'viewModel'));
@@ -98,14 +100,14 @@ class ProductController extends Controller
             'route' => 'product.delete',
             'title' => __('product_message.delete'),
         ];
-        $post = $this->productService->find($id);
-        return view('backend.product.destroy', compact('title','breadcrumb', 'post'));
+        $product = $this->productService->find($id);
+        return view('backend.product.destroy', compact('title','breadcrumb', 'product'));
     }
 
     public function destroy($id)
     {
         if($this->productService->delete($id)){
-            return redirect()->route('product..index')->with('success', __('product_message.delete_success'));
+            return redirect()->route('product.index')->with('success', __('product_message.delete_success'));
         }
         return back()->with('error', __('product_message.delete_error'))->withInput();
     }

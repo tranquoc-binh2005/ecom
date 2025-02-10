@@ -3,14 +3,26 @@ setupProductVariant = () => {
         let price = $('input[name=price]').val()
         let code = $('input[name=code]').val()
 
-        /*if(price === '' || code === ''){
+        if(price === '' || code === ''){
             alert('Bạn cần phải nhập giá và mã sản phẩm để thực hiện chức năng này')
             return false
-        }*/
+        }
         let isChecked = $('#variantCheckbox').is(':checked')
 
         $('.variant-wrapper').toggleClass('hidden', !isChecked)
     })
+}
+
+commasNumber = (nStr) => {
+    nStr = String(nStr)
+    nStr = nStr.replace(/\./gi, "")
+    let str = ''
+    for (let i = nStr.length; i > 0; i -= 3){
+        let a = ( i - 3 < 0) ? 0 : (i - 3)
+        str = nStr.slice(a, i) + '.' + str
+    }
+    str = str.slice(0, str.length - 1)
+    return str
 }
 
 addVariant = () => {
@@ -145,6 +157,7 @@ createVariant = () => {
 createVariantRow = (attributeItem, variantsItem) => {
     let attributeString = Object.values(attributeItem).join(', ')
     let attributeId = Object.values(variantsItem).join(', ')
+    console.log({attributeId, attributeString})
     let classModified = attributeId.replace(/, /g, '-')
     let row = $('<tr>').addClass('variant-row tr-variant-' + classModified)
 
@@ -170,8 +183,8 @@ createVariantRow = (attributeItem, variantsItem) => {
         {name: 'variant[price][]', class: 'variant_price', value: mainPrice},
         {name: 'variant[barcode][]', class: 'variant_barcode'},
         {name: 'variant[album][]', class: 'variant_album'},
-        {name: 'attribute[name]', value: attributeString},
-        {name: 'attribute[id]', value: attributeId},
+        {name: 'attribute[name][]', value: attributeString},
+        {name: 'attribute[id][]', value: attributeId},
     ]
 
     $.each(inputHiddenField, function (_, field) {
@@ -540,8 +553,9 @@ setupSelectMultiple = (callback) => {
                         if(json !== 'undefined' && json.length){
                             for (let i = 0; i < json.length; i++){
                                 var option = new Option(json[i].value, json[i].id, true, true)
-                                _this.append(option).trigger('change');
+                                _this.append(option)
                             }
+                            _this.trigger('change');
                         }
                         if(--count === 0 && callback){
                             callback()
@@ -552,7 +566,7 @@ setupSelectMultiple = (callback) => {
                     }
                 });
             }
-            getSelect2(_this)
+            setupSelect2(_this)
         })
     }
 }
@@ -571,8 +585,15 @@ productVariant = () => {
         ]
 
         for(let i = 0; i < inputHiddenFields.length; i++){
-            _this.find(`input[name="${inputHiddenFields[i].name}"]`).val(inputHiddenFields[i].value);
+            _this.find(`.${inputHiddenFields[i].class}`).val((inputHiddenFields[i].value) ? inputHiddenFields[i].value : 0);
         }
+        let album = productVariant.album[index]
+        let variantImage = (album) ? album.split(',')[0] : 'https://t3.ftcdn.net/jpg/01/44/86/46/360_F_144864656_yfNDNmeMSaTHIJFLYBq9GtRgjiFeBc10.jpg'
+
+        _this.find('.td-quantity').html(commasNumber(productVariant.quantity[index]))
+        _this.find('.td-price').html(commasNumber(productVariant.price[index]))
+        _this.find('.td-sku').html(productVariant.sku[index])
+        _this.find('.imageSrc').attr('src', variantImage)
     })
 }
 

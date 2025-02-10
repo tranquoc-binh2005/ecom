@@ -1,6 +1,8 @@
 <div class="form-group col-md-12 card-box p-2">
     <div class="form-row mb-2">
-        <label class="col-form-label">Mã sản phẩm</label>
+        <label class="col-form-label">Mã sản phẩm
+            <span class="text-danger">*</span>
+        </label>
         <input type="text" class="form-control text-right" value="{{ (isset($post)) ? $post->code : old('code') }}"
                name="code">
     </div>

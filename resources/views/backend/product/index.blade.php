@@ -17,7 +17,7 @@
                         <li>
                             <a
                                 class="publishAll"
-                                data-field="posts"
+                                data-field="products"
                                 data-column="publish"
                                 data-value="2"
                                 href="#"
@@ -26,7 +26,7 @@
                         <li>
                             <a
                                 class="publishAll"
-                                data-field="posts"
+                                data-field="products"
                                 data-column="publish"
                                 data-value="1"
                                 href="#"
@@ -39,7 +39,7 @@
 
         <form action="{{ route('product.index') }}" method="GET">
             <div class="filter-box">
-                <a class="btn btn-info" href="{{ route('product.create') }}">{{ __('post_message.add') }}</a>
+                <a class="btn btn-info" href="{{ route('product.create') }}">{{ __('Tạo sản phẩm') }}</a>
                 <div class="app-search-box bg-light mr-2">
                     <div class="input-group">
                         <input type="text" name="keyword" class="form-control" placeholder="Search..."
@@ -61,10 +61,10 @@
                 </div>
 
                 <div class="mr-2">
-                    <select name="parent_id" class="form-control">
-                        <option value="">{{ __('dashboard.select_catalogue') }}</option>
+                    <select name="product_catalogue_id" class="form-control">
+                        <option value="">{{ __('Chọn danh mục sản phẩm') }}</option>
                         @foreach($viewModel->getProductCatalogue() as $val)
-                            <option value="{{ $val->id }}" {{ request('parent_id') == $val->id ? 'selected' : ''
+                            <option value="{{ $val->id }}" {{ request('product_catalogue_id') == $val->id ? 'selected' : ''
                             }}>{{ str_repeat('|--', $val->depth) . $val->name }}</option>
                         @endforeach
                     </select>
@@ -88,8 +88,8 @@
                     <th>
                         <input type="checkbox" id="inputCheckAll">
                     </th>
-                    <th width="800px">{{ __('post_message.name') }}</th>
-                    <th class="text-center">{{ __('post_message.image') }}</th>
+                    <th width="700px">{{ __('Sản phẩm') }}</th>
+                    <th class="text-center">{{ __('Ảnh sản phẩm') }}</th>
                     <th width="120px">{{ __('post_message.publish') }}</th>
                     <th width="120xp" class="text-center">{{ __('post_message.follow') }}</th>
                     <th class="text-center" width="100px">#</th>
@@ -107,15 +107,11 @@
                                 id="checked">
                         </th>
                         <td>
-                            <p class="title_post">{{ $product->name }}</p>
-                            {{ __('post_message.catalogue') }}: {{ $product->post_catalogues->name }}
-                            <br>
-                            {{ __('post_message.slug') }}: {{ config('app.url') . $product->post_catalogues->slug . '/' .
-                            $product->slug }}
-                            <br>
-                            {{ __('post_message.author') }}: {{ $product->users->name }}
-                            <hr>
-                            <p class="box_description">"{{ $product->description }}"</p>
+                            <div>
+                                <span class="title_post">{{ $product->name }}</span>
+                                Danh mục hiển thị: <span style="color: green">{{ $product->catalogues->name }}</span>
+                            </div>
+                            <p class="box_description">{{ $product->description }}</p>
                         </td>
                         <td class="image_post">
                             <img width="100px" src="{{ $product->image }}" alt="{{ $product->name }}">
@@ -130,17 +126,21 @@
                                 data-switchery="true"
                                 style="display: none;"
                                 class="changeStatusPublish location-{{$product->id}}"
-                                data-field="posts"
+                                data-field="products"
                                 data-column="publish"
                                 data-id="{{ $product->id }}"
                                 data-status="{{ $product->publish }}"
                             >
                         </th>
                         <th class="text-center">
-                            <input type="number" data-id="{{ $product->id }}" data-field="posts" name="order" value="{{
-                            $product->order }}"
-                                   min="0"
-                                   max="1000">
+                            <input
+                                type="number"
+                                data-id="{{ $product->id }}"
+                                data-field="products"
+                                name="order"
+                                value="{{$product->order }}"
+                                min="0"
+                                max="1000">
                         </th>
                         <th class="text-center">
                             <a style="font-size: 20px;" href="{{ route('product.edit', ['id' =>

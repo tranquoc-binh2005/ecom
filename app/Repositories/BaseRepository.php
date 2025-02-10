@@ -11,45 +11,65 @@ class BaseRepository implements BaseRepositoryInterface
         $this->model = $model;
     }
 
-    public function pagination
-    (
+    public function pagination(
         array $column = ['*'],
         array $condition = [],
         int $perPage = 10,
         array $extend = [],
         array $orderBy = ['id', 'DESC'],
-        array $join = [],
-    )
-    {
+        array $join = []
+    ) {
         $query = $this->model->query();
-        if(!empty($column) && is_array($column)){
+
+        $this->applySelectColumns($query, $column);
+        $this->applyConditions($query, $condition);
+        $this->applyOrdering($query, $orderBy);
+        $this->applyJoins($query, $join);
+
+        return $query->paginate($perPage)
+            ->withQueryString()
+            ->withPath(env('APP_URL') . ($extend['path'] ?? ''));
+    }
+
+    private function applySelectColumns($query, array $column)
+    {
+        if (!empty($column) && is_array($column)) {
             $query->select($column);
         }
+    }
 
+    private function applyConditions($query, array $condition): void
+    {
         if (!empty($condition['keyword'])) {
             $query->where(function ($query) use ($condition) {
                 $query->where('name', 'like', '%' . $condition['keyword'] . '%')
-                    ->orWhere('description', 'like', '%' . $condition['keyword'] . '%')
                     ->orWhere('slug', 'like', '%' . $condition['keyword'] . '%');
             });
         }
 
-        if (!empty($condition['parent_id'])) {
-            $query->where(function ($query) use ($condition) {
-                $query->where('parent_id', $condition['parent_id']);
-            });
+        foreach (['parent_id', 'product_catalogue_id'] as $field) {
+            if (!empty($condition[$field])) {
+                $query->where($field, $condition[$field]);
+            }
         }
 
-        if(!empty($condition['publish']) && $condition['publish'] != -1){
+        if (isset($condition['publish']) && $condition['publish'] != -1) {
             $query->where('publish', $condition['publish']);
         }
-        if(!empty($orderBy) && is_array($orderBy)){
+    }
+
+    private function applyOrdering($query, array $orderBy): void
+    {
+        if (!empty($orderBy) && count($orderBy) === 2) {
             $query->orderBy($orderBy[0], $orderBy[1]);
         }
-        if(!empty($join) && is_array($join)){
-            $query->join($join[0], $join[1], '=' , $join[2]);
+    }
+
+    private function applyJoins($query, array $join): void
+    {
+        if (!empty($join) && count($join) === 3) {
+            $query->join($join[0], $join[1], '=', $join[2]);
         }
-        return $query->paginate($perPage)->withQueryString()->withPath(env('APP_URL').$extend['path']);
     }
 
     public function findById(int $id)
@@ -60,6 +80,11 @@ class BaseRepository implements BaseRepositoryInterface
     public function create(array $data)
     {
         return $this->model->create($data);
+    }
+
+    public function createBatch(array $data)
+    {
+        return $this->model->insert($data);
     }
 
     public function update(int $id, array $data)

@@ -15,14 +15,14 @@
                     @endif
                     <div class="ibox-content">
                         <div class="form-group col-md-12">
-                            <label for="" class="col-form-label">{{ __('productCatalogue_message.name') }}
+                            <label for="" class="col-form-label">{{ __('Nhóm thuộc tính') }}
                                 <span class="text-danger">*</span>
                             </label>
                             <input
                                 type="text"
                                 class="form-control"
                                 name="name"
-                                placeholder="{{ __('productCatalogue_message.name') }}"
+                                placeholder="{{ __('Nhóm thuộc tính') }}"
                                 value="{{ (isset($attribute)) ? $attribute->name : old('name') }}"
                             >
                         </div>

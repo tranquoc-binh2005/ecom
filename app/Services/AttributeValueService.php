@@ -24,7 +24,7 @@ class AttributeValueService implements AttributeValueServiceInterface
             $this->paginateSelect(),
             $condition,
             $perPage,
-            ['path' => 'attribute'],
+            ['path' => 'attribute/value'],
             ['id', 'ASC'],
         );
     }

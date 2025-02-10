@@ -42,8 +42,12 @@ return [
               'route' => 'product.catalogue.index',
           ],
           [
-              'name' => 'Thuộc tính sản phẩm',
+              'name' => 'Thuộc tính',
               'route' => 'attribute.index',
+          ],
+          [
+              'name' => 'Giá trị',
+              'route' => 'attribute.value.index',
           ],
           [
               'name' => 'Sản phẩm',

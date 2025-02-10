@@ -22,4 +22,9 @@ class ProductCatalogue extends Model
         'publish',
         'slug'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'product_catalogue_id', 'id');
+    }
 }
